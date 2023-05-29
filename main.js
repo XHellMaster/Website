@@ -2,17 +2,17 @@ class Typer {
     constructor(typedTextSpan, cursorSpan) {
       this.typedTextSpan = typedTextSpan;
       this.cursorSpan = cursorSpan;
-      this.textArray = ["Hello, I'm Arnav Nanduri, a miscellaneous software developer with a strong background in Python, Java, SQL, C#, and web development!",
+      this.textArray = ["Hello, I'm Arnav Nanduri, a software developer with a strong background in Python, Java, SQL, C#, and web development!",
        "New here? Check out some of my projects.",
        "Need to commission something? Contact me!"
     ];
       this.typingDelay = 50;
-      this.erasingDelay = 20;
-      this.newTextDelay = 2000;
+      this.erasingDelay = 15;
+      this.newTextDelay = 3000;
       this.textArrayIndex = 0;
       this.charIndex = 0;
-      this.typing = true;
-      this.blinkingCursor();
+      this.cursorInterval = null;
+      this.blinkingCursor(true);
       this.type();
     }
   
@@ -22,28 +22,38 @@ class Typer {
         this.charIndex++;
         setTimeout(() => this.type(), this.typingDelay);
       } else {
-        this.typing = false;
-        setTimeout(() => this.erase(), this.newTextDelay);
+        this.blinkingCursor(false);
+        this.fadeOut();
       }
     }
   
-    erase() {
-      if (this.charIndex > 0) {
-        this.typedTextSpan.textContent = this.textArray[this.textArrayIndex].substring(0, this.charIndex - 1);
-        this.charIndex--;
-        setTimeout(() => this.erase(), this.erasingDelay);
-      } else {
-        this.typing = true;
+    fadeOut() {
+        this.typedTextSpan.style.transition = 'opacity 2s';
+        this.typedTextSpan.style.opacity = '0';
+        setTimeout(() => this.newText(), this.newTextDelay);
+    }
+
+    newText() {
+        this.typedTextSpan.style.transition = 'none';
+        this.typedTextSpan.style.opacity = '1';
         this.textArrayIndex++;
         if (this.textArrayIndex >= this.textArray.length) this.textArrayIndex = 0;
-        setTimeout(() => this.type(), this.typingDelay + 1100);
-      }
+        this.typedTextSpan.textContent = '';
+        this.charIndex = 0;
+        this.blinkingCursor(true);
+        this.type();
     }
   
-    blinkingCursor() {
-      setInterval(() => {
-        this.cursorSpan.style.opacity = this.cursorSpan.style.opacity == '0' ? '1' : '0';
-      }, 500);
+    blinkingCursor(isBlinking) {
+      if (isBlinking) {
+        this.cursorSpan.style.opacity = '1';
+        this.cursorInterval = setInterval(() => {
+          this.cursorSpan.style.opacity = this.cursorSpan.style.opacity == '0' ? '1' : '0';
+        }, 500);
+      } else {
+        clearInterval(this.cursorInterval);
+        this.cursorSpan.style.opacity = '0';
+      }
     }
   }
   

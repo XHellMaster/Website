@@ -15,12 +15,12 @@ body {
     justify-content: space-around;
     position: fixed;
     top: 0;
-    left: 25%;
-    width: 50%;
+    left: 0;
+    width: 100%;
     background-color: rgb(78, 0, 129);
     color: white;
     padding: 10px 0;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 0 0 25px 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 100;
 }
@@ -28,7 +28,7 @@ body {
 #navbar a {
     color: white;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 3vw;
     font-weight: 900;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -55,15 +55,14 @@ section {
 }
 
 .type p {
-    font-size: 40px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 0.5rem;
+    font-size: 4vw;
+    padding: 1vw;
     font-weight: bold;
     letter-spacing: 0.1rem;
     text-align: center;
     overflow: hidden;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px; 
 }
 
 .type p span.typed-text {
@@ -133,4 +132,46 @@ section {
     font-size: 70px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
+}
+
+@media (min-width: 769px) {
+    #navbar {
+        left: 25%;
+        width: 50%;
+        border-radius: 25px 25px 25px 25px;
+    }
+
+    #navbar a {
+        font-size: 30px;
+    }
+    .type p {
+        font-size: 40px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #navbar a {
+        font-size: 20px;
+    }
+
+    .type h1.welcome {
+        font-size: 50px;
+    }
+
+    .type p {
+        font-size: 30px;
+    }
+
+    #contact .project h3 {
+        font-size: 30px;
+    }
+
+    #contact .project p {
+        font-size: 20px;
+    }
+
+    #contact .project a {
+        font-size: 20px;
+    }
 }

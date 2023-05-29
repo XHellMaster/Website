@@ -15,12 +15,12 @@ body {
     justify-content: space-around;
     position: fixed;
     top: 0;
-    left: 25%;
-    width: 50%;
+    left: 0;
+    width: 100%;
     background-color: rgb(78, 0, 129);
     color: white;
     padding: 10px 0;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 0 0 25px 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 100;
 }
@@ -28,10 +28,11 @@ body {
 #navbar a {
     color: white;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 3vw;
     font-weight: 900;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 section {
     margin: 80px 50px 50px;
@@ -82,4 +83,31 @@ section {
     margin-left: 15px;
     font-size: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+@media (min-width: 768px) {
+    #navbar {
+        left: 25%;
+        width: 50%;
+        border-radius: 25px 25px 25px 25px;
+    }
+
+    #navbar a {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body #navbar a {
+        font-size: 20px;
+    }
+
+    body .type h1.welcome {
+        font-size: 50px;
+    }
+
+    body .type p {
+        font-size: 30px;
+    }
 }
